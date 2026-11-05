@@ -1,0 +1,16 @@
+name: Security Scan
+on: [push]
+jobs:
+  dependency-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install pip-audit
+        run: pip install pip-audit
+      - name: Scan dependencies for vulnerabilities
+        run: pip-audit -r task4/requirements.txt || true
