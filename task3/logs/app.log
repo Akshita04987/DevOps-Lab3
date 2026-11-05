@@ -1,0 +1,12 @@
+2026-11-05T10:00:01 INFO User logged in
+2026-11-05T10:00:05 WARN Disk usage high
+2026-11-05T10:00:09 ERROR Database connection failed
+2026-11-05T10:00:12 INFO Request completed
+2026-11-05T10:00:15 INFO Page loaded
+2026-11-05T10:00:18 INFO File uploaded
+2026-11-05T10:00:21 WARN Memory usage high
+2026-11-05T10:00:25 ERROR Payment service timeout
+2026-11-05T10:00:28 INFO User logged out
+2026-11-05T10:00:31 INFO Request completed
+2026-11-05T10:00:35 WARN Slow response detected
+2026-11-05T10:00:40 ERROR Failed to send email
