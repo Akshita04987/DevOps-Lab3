@@ -1,5 +1,14 @@
-
+# Terraform
 .terraform/
 *.tfstate
 *.tfstate.*
+
+# Downloads and local files
 *.deb
+__pycache__/
+*.pyc
+.env
+nohup.out
+
+# Runtime logs
+task6/app.log
