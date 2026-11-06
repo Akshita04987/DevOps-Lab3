@@ -1,0 +1,80 @@
+  275  app = Flask(__name__)
+  276  @app.route("/")
+  277  def home():
+  278      if os.getenv("NEW_FEATURE", "off") == "on":
+  279          return "<h1>New Feature is ON</h1>"
+  280      return "<h1>Old Version</h1>"
+  281  app.run(host="0.0.0.0", port=5000)
+  282  EOF
+  283  ls
+  284  nohup python3 app.py > app.log 2>&1 &
+  285  sleep 3
+  286  curl localhost:5000
+  287  pip install flask selenium --break-system-packages --ignore-installed urllib3
+  288  python3 -c "import flask, selenium; print('OK')"
+  289  nohup python3 app.py > app.log 2>&1 &
+  290  sleep 3
+  291  curl localhost:5000
+  292  pkill -f app.py
+  293  NEW_FEATURE=on nohup python3 app.py > app.log 2>&1 &
+  294  sleep 3
+  295  curl localhost:5000
+  296  apt install -y apache2-utils
+  297  ab -n 1000 -c 50 http://localhost:5000/
+  298  wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  299  apt install -y ./google-chrome-stable_current_amd64.deb
+  300  google-chrome --version
+  301  cat > test.py << 'EOF'
+  302  from selenium import webdriver
+  303  from selenium.webdriver.chrome.options import Options
+  304  opts = Options()
+  305  opts.add_argument("--headless")
+  306  opts.add_argument("--no-sandbox")
+  307  opts.add_argument("--disable-dev-shm-usage")
+  308  driver = webdriver.Chrome(options=opts)
+  309  driver.get("http://localhost:5000")
+  310  print("Page text:", driver.find_element("tag name", "h1").text)
+  311  assert "New Feature" in driver.page_source
+  312  print("TEST PASSED")
+  313  driver.quit()
+  314  EOF
+  315  python3 test.py
+  316  history | tail -60 > commands.txt
+  317  pkill -f app.py
+  318  cd ..
+  319  git add .
+  320  git commit -m "Task 6 done"
+  321  git push
+  322  cd "/mnt/c/Users/Akshita Sharma/Downloads/DevOps-Lab3/task6"
+  323  NEW_FEATURE=on nohup python3 app.py > app.log 2>&1 &
+  324  sleep 3
+  325  python3 test.py
+  326  curl localhost:5000
+  327  cd "/mnt/c/Users/Akshita Sharma/Downloads/DevOps-Lab3/task6"
+  328  pwd
+  329  NEW_FEATURE=on nohup python3 app.py > app.log 2>&1 &
+  330  sleep 3
+  331  curl localhost:5000
+  332  cat > test.py << 'EOF'
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+opts = Options()
+opts.add_argument("--headless=new")
+opts.add_argument("--no-sandbox")
+opts.add_argument("--disable-dev-shm-usage")
+driver = webdriver.Chrome(options=opts)
+try:
+    driver.get("http://localhost:5000")
+    text = driver.find_element("tag name", "h1").text
+    print("Page text:", text, flush=True)
+    assert "New Feature" in driver.page_source
+    print("TEST PASSED", flush=True)
+finally:
+    driver.quit()
+EOF
+
+  333  python3 test.py; echo "exit code: $?"
+  334  pkill -f app.py
+  335  rm -f google-chrome-stable_current_amd64.deb
+  336  history | tail -80 > commands.txt
