@@ -106,7 +106,3 @@ Task 4 runs automatically on every push; results are in the repository's Actions
 - Elasticsearch needs a higher `vm.max_map_count`. On Docker Desktop with WSL2, set it with `wsl -d docker-desktop sysctl -w vm.max_map_count=262144`.
 - GitHub rejects files over 100 MB and requires a personal access token (with the `workflow` scope to push workflow files). Keep installers and Terraform state out of version control with `.gitignore`.
 - Logs explain what happened, metrics show how the system is behaving, and automated scans catch problems before release. Together they shorten troubleshooting.
-
-## License
-
-MIT
